@@ -8,7 +8,8 @@
     "test:renderer": "node tests/render-html.test.js",
     "render:examples": "node scripts/test-renderer.js",
     "debug:normalizer": "node scripts/test-normalizer.js",
-    "test": "npm run test:normalizer && npm run test:renderer"
+    "test:schema": "node tests/validate-schema.test.js",
+    "test": "npm run test:schema && npm run test:normalizer && npm run test:renderer"
   },
   "keywords": [
     "reporting",
