@@ -24,6 +24,15 @@
           "id": "technician",
           "label": "Technician",
           "type": "text"
+        },
+        {
+        "id": "status",
+        "label": "Status",
+        "type": "select",
+        "options": [
+            "Pending",
+            "Completed"
+          ]
         }
       ]
     },
@@ -89,7 +98,11 @@
     {
       "id": "notes",
       "title": "Additional Notes",
-      "type": "notes"
+      "type": "notes",
+      "visibleWhen": {
+        "field": "job.status",
+        "equals": "Completed"
+      }
     },
     {
       "id": "signatures",

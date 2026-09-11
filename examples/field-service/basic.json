@@ -2,7 +2,8 @@
   "job": {
     "jobNumber": "JOB-1001",
     "serviceDate": "2026-09-11",
-    "technician": "Alex Example"
+    "technician": "Alex Example",
+    "status": "Pending"
   },
   "customer": {
     "name": "Example Customer",
