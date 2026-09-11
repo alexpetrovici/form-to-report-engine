@@ -1,4 +1,8 @@
 const {
+  formatValue
+} = require('./format-value')
+
+const {
   evaluateCondition
 } = require('./evaluate-condition')
 
@@ -109,7 +113,11 @@ function normalizeFields(fields = [], sectionData = {}) {
     label: field.label || '',
     type: field.type || 'text',
     required: field.required === true,
-    value: normalizeValue(data[field.id])
+    value: normalizeValue(data[field.id]),
+    displayValue: formatValue(
+      data[field.id],
+      field.type
+      )
   }))
 }
 

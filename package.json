@@ -13,7 +13,8 @@
     "test:build": "node tests/build-report.test.js",
     "test:api": "node tests/index.test.js",
     "test:conditions": "node tests/evaluate-condition.test.js",
-    "test": "npm run test:schema && npm run test:submission && npm run test:normalizer && npm run test:build && npm run test:renderer && npm run test:api && npm run test:conditions"
+    "test:format": "node tests/format-value.test.js",
+    "test": "npm run test:schema && npm run test:submission && npm run test:normalizer && npm run test:build && npm run test:renderer && npm run test:api && npm run test:conditions && npm run test:format"
   },
   "keywords": [
     "reporting",
