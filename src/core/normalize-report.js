@@ -152,7 +152,8 @@ function normalizeColumns(columns = []) {
 
   return columns.map((column) => ({
     id: column.id || '',
-    label: column.label || ''
+    label: column.label || '',
+    type: column.type || 'text'
   }))
 }
 
@@ -173,7 +174,10 @@ function normalizeTableRows(columns = [], sectionData = []) {
         id: column.id,
         value: normalizeValue(row[column.id]),
         displayValue: getDisplayValue(
-          normalizeValue(row[column.id])
+          formatValue(
+            row[column.id],
+            column.type
+          )
         )
       }))
     }))
