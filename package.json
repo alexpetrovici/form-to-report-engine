@@ -12,7 +12,8 @@
     "test:submission": "node tests/validate-submission.test.js",
     "test:build": "node tests/build-report.test.js",
     "test:api": "node tests/index.test.js",
-    "test": "npm run test:schema && npm run test:submission && npm run test:normalizer && npm run test:build && npm run test:renderer && npm run test:api"
+    "test:conditions": "node tests/evaluate-condition.test.js",
+    "test": "npm run test:schema && npm run test:submission && npm run test:normalizer && npm run test:build && npm run test:renderer && npm run test:api && npm run test:conditions"
   },
   "keywords": [
     "reporting",

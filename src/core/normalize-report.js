@@ -1,4 +1,8 @@
 const {
+  evaluateCondition
+} = require('./evaluate-condition')
+
+const {
   validateSchema
 } = require('./validate-schema')
 
@@ -42,7 +46,9 @@ function normalizeSection(section = {}, submission = {}) {
     id: section.id || '',
     title: section.title || '',
     type: section.type || 'unknown',
-    visible: hasMeaningfulData(section.type, sectionData)
+    visible:
+        evaluateCondition(section.visibleWhen, submission) &&
+        hasMeaningfulData(section.type, sectionData)
   }
 
   switch (section.type) {
