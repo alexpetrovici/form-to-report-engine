@@ -1,0 +1,25 @@
+{
+  "job": {
+    "jobNumber": "JOB-1001",
+    "serviceDate": "2026-09-11",
+    "technician": "Alex Example"
+  },
+  "customer": {
+    "name": "Example Customer",
+    "address": "25 Sample Road"
+  },
+  "workPerformed": [
+    {
+      "task": "System inspection",
+      "result": "Completed",
+      "notes": ""
+    }
+  ],
+  "materials": [],
+  "notes": "",
+  "signatures": {
+    "technician": {
+      "name": "Alex Example"
+    }
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "id": "field-service",
+  "version": "1.0",
+  "title": "Field Service Report",
+  "sections": [
+    {
+      "id": "job",
+      "title": "Job Details",
+      "type": "fields",
+      "fields": [
+        {
+          "id": "jobNumber",
+          "label": "Job Number",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "serviceDate",
+          "label": "Service Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "technician",
+          "label": "Technician",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "customer",
+      "title": "Customer",
+      "type": "fields",
+      "fields": [
+        {
+          "id": "name",
+          "label": "Customer Name",
+          "type": "text"
+        },
+        {
+          "id": "address",
+          "label": "Address",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "workPerformed",
+      "title": "Work Performed",
+      "type": "repeatable",
+      "fields": [
+        {
+          "id": "task",
+          "label": "Task",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "result",
+          "label": "Result",
+          "type": "text"
+        },
+        {
+          "id": "notes",
+          "label": "Notes",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "id": "materials",
+      "title": "Materials Used",
+      "type": "table",
+      "columns": [
+        {
+          "id": "name",
+          "label": "Material"
+        },
+        {
+          "id": "quantity",
+          "label": "Quantity"
+        },
+        {
+          "id": "unit",
+          "label": "Unit"
+        }
+      ]
+    },
+    {
+      "id": "notes",
+      "title": "Additional Notes",
+      "type": "notes"
+    },
+    {
+      "id": "signatures",
+      "title": "Signatures",
+      "type": "signature",
+      "signers": [
+        {
+          "id": "technician",
+          "label": "Technician"
+        },
+        {
+          "id": "customer",
+          "label": "Customer"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "job": {
+    "jobNumber": "JOB-1001",
+    "serviceDate": "2026-09-11",
+    "technician": "Alex Example"
+  },
+  "customer": {
+    "name": "Example Customer",
+    "address": "25 Sample Road"
+  },
+  "workPerformed": [
+    {
+      "task": "Inspect control unit",
+      "result": "Completed",
+      "notes": "No visible damage found."
+    },
+    {
+      "task": "Replace filter",
+      "result": "Completed",
+      "notes": "Old filter was heavily used."
+    },
+    {
+      "task": "Functional test",
+      "result": "Passed",
+      "notes": ""
+    }
+  ],
+  "materials": [
+    {
+      "name": "Replacement filter",
+      "quantity": "1",
+      "unit": "pc"
+    },
+    {
+      "name": "Cleaning agent",
+      "quantity": "250",
+      "unit": "ml"
+    }
+  ],
+  "notes": "Customer was informed about the next recommended maintenance interval.",
+  "signatures": {
+    "technician": {
+      "name": "Alex Example"
+    },
+    "customer": {
+      "name": "Chris Customer"
+    }
+  }
+}
