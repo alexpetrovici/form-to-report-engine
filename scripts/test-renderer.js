@@ -30,25 +30,39 @@ function writeOutput(fileName, content) {
   return outputPath
 }
 
-function runExample(name) {
-  const schema = loadJson('examples/property-handover/schema.json')
-  const submission = loadJson(
-    `examples/property-handover/${name}.json`
-  )
+function runExample(exampleName, submissionName) {
+  const exampleDirectory = `examples/${exampleName}`
 
-  const brand = loadJson('examples/property-handover/brand.json')
+  const schema = loadJson(`${exampleDirectory}/schema.json`)
+  const submission = loadJson(
+    `${exampleDirectory}/${submissionName}.json`
+  )
+  const brand = loadJson(`${exampleDirectory}/brand.json`)
 
   const report = normalizeReport(schema, submission, brand)
   const html = renderHtml(report)
 
   const outputPath = writeOutput(
-    `property-handover-${name}.html`,
+    `${exampleName}-${submissionName}.html`,
     html
   )
 
   console.log(`Generated: ${outputPath}`)
 }
 
-runExample('empty')
-runExample('basic')
-runExample('full')
+const examples = [
+  'property-handover',
+  'field-service'
+]
+
+const submissions = [
+  'empty',
+  'basic',
+  'full'
+]
+
+examples.forEach((exampleName) => {
+  submissions.forEach((submissionName) => {
+    runExample(exampleName, submissionName)
+  })
+})
