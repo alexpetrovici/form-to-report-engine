@@ -4,8 +4,8 @@
   "description": "Open-source schema-driven engine for turning structured form data into modular, professional HTML and PDF reports.",
   "main": "src/core/normalize-report.js",
   "scripts": {
-    "test:normalizer": "node scripts/test-normalizer.js",
-    "test:renderer": "node scripts/assert-renderer.js",
+    "test:normalizer": "node tests/normalize-report.test.js",
+    "test:renderer": "node tests/render-html.test.js",
     "render:examples": "node scripts/test-renderer.js",
     "debug:normalizer": "node scripts/test-normalizer.js",
     "test": "npm run test:normalizer && npm run test:renderer"
@@ -19,5 +19,8 @@
     "jsreport"
   ],
   "author": "Alexandru Petrovici",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "handlebars": "^4.7.8"
+  }
 }
