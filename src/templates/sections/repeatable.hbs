@@ -1,0 +1,16 @@
+<section>
+  <h2>{{title}}</h2>
+
+  {{#each rows}}
+    <article>
+      <h3>Item {{addOne @index}}</h3>
+
+      {{#each fields}}
+        <div>
+          <strong>{{label}}</strong>
+          <span>{{value}}</span>
+        </div>
+      {{/each}}
+    </article>
+  {{/each}}
+</section>
