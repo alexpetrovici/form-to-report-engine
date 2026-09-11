@@ -171,7 +171,10 @@ function normalizeTableRows(columns = [], sectionData = []) {
     .map((row) => ({
       cells: normalizedColumns.map((column) => ({
         id: column.id,
-        value: normalizeValue(row[column.id])
+        value: normalizeValue(row[column.id]),
+        displayValue: getDisplayValue(
+          normalizeValue(row[column.id])
+        )
       }))
     }))
 }
@@ -199,6 +202,9 @@ function normalizeSigners(signers = [], sectionData = {}) {
       id: signer.id || '',
       label: signer.label || '',
       name: normalizeText(signerData.name),
+      displayName: getDisplayValue(
+        normalizeText(signerData.name)
+      ),
       signed: Boolean(signerData.signature)
     }
   })
