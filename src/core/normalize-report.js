@@ -1,4 +1,8 @@
 const {
+  getDisplayValue
+} = require('./get-display-value')
+
+const {
   formatValue
 } = require('./format-value')
 
@@ -114,10 +118,12 @@ function normalizeFields(fields = [], sectionData = {}) {
     type: field.type || 'text',
     required: field.required === true,
     value: normalizeValue(data[field.id]),
-    displayValue: formatValue(
-      data[field.id],
-      field.type
+    displayValue: getDisplayValue(
+      formatValue(
+        data[field.id],
+        field.type
       )
+    )
   }))
 }
 
