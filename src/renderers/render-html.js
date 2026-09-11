@@ -8,6 +8,11 @@ const templatesDirectory = path.resolve(
   'templates'
 )
 
+const styles = fs.readFileSync(
+  path.join(templatesDirectory, 'report.css'),
+  'utf-8'
+)
+
 /**
  * Loads and compiles a Handlebars template.
  */
@@ -76,6 +81,7 @@ function renderHtml(report = {}) {
 
   return reportTemplate({
     ...report,
+    styles: new Handlebars.SafeString(styles),
     renderedSections: new Handlebars.SafeString(
       renderedSections
     )
