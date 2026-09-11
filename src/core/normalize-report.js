@@ -1,3 +1,7 @@
+const {
+  validateSchema
+} = require('./validate-schema')
+
 /**
  * Builds a normalized report model from a report schema and submission data.
  *
@@ -6,9 +10,15 @@
  */
 
 function normalizeReport(schema = {}, submission = {}, brand = {}) {
-  const sections = Array.isArray(schema.sections)
-    ? schema.sections
-    : []
+  const validation = validateSchema(schema)
+
+  if (!validation.valid) {
+    throw new Error(
+      `Invalid report schema:\n${validation.errors.join('\n')}`
+    )
+  }
+
+  const sections = schema.sections
 
   return {
     id: schema.id || '',

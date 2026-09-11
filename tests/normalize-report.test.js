@@ -55,4 +55,10 @@ assert.strictEqual(
   'Example note'
 )
 
+assert.throws(
+  () => normalizeReport({}, {}),
+  /Invalid report schema/,
+  'Invalid schemas should throw before normalization'
+)
+
 console.log('normalize-report tests passed.')
