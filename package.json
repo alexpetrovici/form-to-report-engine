@@ -1,0 +1,22 @@
+{
+  "name": "form-to-report-engine",
+  "version": "0.1.0",
+  "description": "Open-source schema-driven engine for turning structured form data into modular, professional HTML and PDF reports.",
+  "main": "src/core/normalize-report.js",
+  "scripts": {
+    "test:normalizer": "node scripts/test-normalizer.js",
+    "test:renderer": "node scripts/assert-renderer.js",
+    "render:examples": "node scripts/test-renderer.js",
+    "test": "npm run test:normalizer && npm run test:renderer"
+  },
+  "keywords": [
+    "reporting",
+    "pdf",
+    "forms",
+    "schema",
+    "handlebars",
+    "jsreport"
+  ],
+  "author": "Alexandru Petrovici",
+  "license": "MIT"
+}
