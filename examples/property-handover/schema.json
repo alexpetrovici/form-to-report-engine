@@ -1,0 +1,104 @@
+{
+  "id": "property-handover",
+  "version": "1.0",
+  "title": "Property Handover Report",
+
+  "sections": [
+    {
+      "id": "property",
+      "title": "Property Details",
+      "type": "fields",
+      "fields": [
+        {
+          "id": "address",
+          "label": "Address",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "handoverDate",
+          "label": "Handover Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "propertyType",
+          "label": "Property Type",
+          "type": "text"
+        }
+      ]
+    },
+
+    {
+      "id": "rooms",
+      "title": "Room Inspection",
+      "type": "repeatable",
+      "fields": [
+        {
+          "id": "name",
+          "label": "Room",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "condition",
+          "label": "Condition",
+          "type": "select",
+          "options": [
+            "Excellent",
+            "Good",
+            "Fair",
+            "Poor"
+          ]
+        },
+        {
+          "id": "notes",
+          "label": "Notes",
+          "type": "textarea"
+        }
+      ]
+    },
+
+    {
+      "id": "meters",
+      "title": "Meter Readings",
+      "type": "table",
+      "columns": [
+        {
+          "id": "type",
+          "label": "Meter"
+        },
+        {
+          "id": "reading",
+          "label": "Reading"
+        },
+        {
+          "id": "unit",
+          "label": "Unit"
+        }
+      ]
+    },
+
+    {
+      "id": "notes",
+      "title": "General Notes",
+      "type": "notes"
+    },
+
+    {
+      "id": "signatures",
+      "title": "Signatures",
+      "type": "signature",
+      "signers": [
+        {
+          "id": "tenant",
+          "label": "Tenant"
+        },
+        {
+          "id": "representative",
+          "label": "Property Representative"
+        }
+      ]
+    }
+  ]
+}
