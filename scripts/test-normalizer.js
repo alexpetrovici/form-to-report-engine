@@ -16,7 +16,9 @@ function runExample(name) {
   const schema = loadJson('examples/property-handover/schema.json')
   const submission = loadJson(`examples/property-handover/${name}.json`)
 
-  const report = normalizeReport(schema, submission)
+  const brand = loadJson('examples/property-handover/brand.json')
+
+  const report = normalizeReport(schema, submission, brand)
 
   console.log(`\n=== ${name.toUpperCase()} ===\n`)
   console.dir(report, {

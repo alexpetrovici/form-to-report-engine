@@ -5,7 +5,7 @@
  * templates a predictable structure regardless of the original form shape.
  */
 
-function normalizeReport(schema = {}, submission = {}) {
+function normalizeReport(schema = {}, submission = {}, brand = {}) {
   const sections = Array.isArray(schema.sections)
     ? schema.sections
     : []
@@ -14,6 +14,7 @@ function normalizeReport(schema = {}, submission = {}) {
     id: schema.id || '',
     version: schema.version || '',
     title: schema.title || 'Untitled Report',
+    brand: normalizeBrand(brand),
 
     sections: sections.map((section) =>
       normalizeSection(section, submission)
@@ -239,6 +240,20 @@ function normalizeText(value) {
     : ''
 }
 
+/**
+ * Normalizes optional report branding.
+ */
+function normalizeBrand(brand = {}) {
+  return {
+    companyName: normalizeText(brand.companyName),
+    tagline: normalizeText(brand.tagline),
+    email: normalizeText(brand.email),
+    phone: normalizeText(brand.phone),
+    website: normalizeText(brand.website),
+    primaryColor: normalizeText(brand.primaryColor)
+  }
+}
+
 module.exports = {
   normalizeReport,
   normalizeSection,
@@ -247,5 +262,6 @@ module.exports = {
   normalizeColumns,
   normalizeTableRows,
   normalizeSigners,
+  normalizeBrand,
   hasMeaningfulData
 }

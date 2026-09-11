@@ -36,7 +36,9 @@ function runExample(name) {
     `examples/property-handover/${name}.json`
   )
 
-  const report = normalizeReport(schema, submission)
+  const brand = loadJson('examples/property-handover/brand.json')
+
+  const report = normalizeReport(schema, submission, brand)
   const html = renderHtml(report)
 
   const outputPath = writeOutput(
