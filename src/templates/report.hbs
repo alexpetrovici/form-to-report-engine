@@ -6,13 +6,43 @@
   <title>{{title}}</title>
 
   <style>
+    :root {
+      --primary-color: {{brand.primaryColor}};
+    }
+
     {{{styles}}}
   </style>
 </head>
 
 <body>
   <main>
-    <h1>{{title}}</h1>
+    <header class="report-header">
+      <div>
+        <h1>{{title}}</h1>
+
+        {{#if brand.companyName}}
+          <p class="company-name">{{brand.companyName}}</p>
+        {{/if}}
+
+        {{#if brand.tagline}}
+          <p class="tagline">{{brand.tagline}}</p>
+        {{/if}}
+      </div>
+
+      <div class="company-contact">
+        {{#if brand.email}}
+          <span>{{brand.email}}</span>
+        {{/if}}
+
+        {{#if brand.phone}}
+          <span>{{brand.phone}}</span>
+        {{/if}}
+
+        {{#if brand.website}}
+          <span>{{brand.website}}</span>
+        {{/if}}
+      </div>
+    </header>
 
     {{{renderedSections}}}
   </main>
