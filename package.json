@@ -7,6 +7,7 @@
     "test:normalizer": "node scripts/test-normalizer.js",
     "test:renderer": "node scripts/assert-renderer.js",
     "render:examples": "node scripts/test-renderer.js",
+    "debug:normalizer": "node scripts/test-normalizer.js",
     "test": "npm run test:normalizer && npm run test:renderer"
   },
   "keywords": [
