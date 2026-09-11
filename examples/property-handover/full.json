@@ -1,0 +1,54 @@
+{
+  "property": {
+    "address": "12 Example Street",
+    "handoverDate": "2026-09-11",
+    "propertyType": "Apartment"
+  },
+
+  "rooms": [
+    {
+      "name": "Living Room",
+      "condition": "Good",
+      "notes": "Minor mark near the window."
+    },
+    {
+      "name": "Kitchen",
+      "condition": "Fair",
+      "notes": "Cabinet hinge requires adjustment."
+    },
+    {
+      "name": "Bedroom",
+      "condition": "Excellent",
+      "notes": ""
+    }
+  ],
+
+  "meters": [
+    {
+      "type": "Electricity",
+      "reading": "18452",
+      "unit": "kWh"
+    },
+    {
+      "type": "Water",
+      "reading": "733",
+      "unit": "m³"
+    },
+    {
+      "type": "Gas",
+      "reading": "1258",
+      "unit": "m³"
+    }
+  ],
+
+  "notes": "All keys were handed over during the inspection.",
+
+  "signatures": {
+    "tenant": {
+      "name": "Anna Example"
+    },
+    "representative": {
+      "name": "Max Mustermann"
+    }
+  }
+}

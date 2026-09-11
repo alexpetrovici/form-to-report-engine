@@ -1,0 +1,28 @@
+{
+  "property": {
+    "address": "12 Example Street",
+    "handoverDate": "2026-09-11",
+    "propertyType": "Apartment"
+  },
+
+  "rooms": [
+    {
+      "name": "Living Room",
+      "condition": "Good",
+      "notes": ""
+    }
+  ],
+
+  "meters": [],
+
+  "notes": "",
+
+  "signatures": {
+    "tenant": {
+      "name": "Anna Example"
+    },
+    "representative": {
+      "name": "Max Mustermann"
+    }
+  }
+}
