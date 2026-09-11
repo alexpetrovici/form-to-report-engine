@@ -46,6 +46,12 @@ function validateSection(section = {}, index, errors) {
     errors.push(`${location} must define a string "title".`)
   }
 
+  validateVisibleWhen(
+  section.visibleWhen,
+  location,
+  errors
+  )
+
   if (!SUPPORTED_SECTION_TYPES.has(section.type)) {
     errors.push(
       `${location} has unsupported type "${section.type}".`
@@ -81,6 +87,45 @@ function validateSection(section = {}, index, errors) {
 
     default:
       break
+  }
+}
+
+function validateVisibleWhen(condition, location, errors) {
+  if (condition === undefined) {
+    return
+  }
+
+  if (!condition || typeof condition !== 'object' || Array.isArray(condition)) {
+    errors.push(`${location}.visibleWhen must be an object.`)
+    return
+  }
+
+  if (!condition.field || typeof condition.field !== 'string') {
+    errors.push(
+      `${location}.visibleWhen must define a string "field".`
+    )
+  }
+
+  const hasEquals = Object.prototype.hasOwnProperty.call(
+    condition,
+    'equals'
+  )
+
+  const hasNotEquals = Object.prototype.hasOwnProperty.call(
+    condition,
+    'notEquals'
+  )
+
+  if (!hasEquals && !hasNotEquals) {
+    errors.push(
+      `${location}.visibleWhen must define either "equals" or "notEquals".`
+    )
+  }
+
+  if (hasEquals && hasNotEquals) {
+    errors.push(
+      `${location}.visibleWhen cannot define both "equals" and "notEquals".`
+    )
   }
 }
 

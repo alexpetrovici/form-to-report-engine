@@ -41,4 +41,45 @@ assert(
   'Invalid schema should return validation errors'
 )
 
+const conditionalSchema = {
+  id: 'conditional-example',
+  title: 'Conditional Example',
+  sections: [
+    {
+      id: 'notes',
+      title: 'Notes',
+      type: 'notes',
+      visibleWhen: {
+        field: 'details.status',
+        equals: 'Completed'
+      }
+    }
+  ]
+}
+
+const invalidConditionalSchema = {
+  id: 'broken-condition',
+  title: 'Broken Condition',
+  sections: [
+    {
+      id: 'notes',
+      title: 'Notes',
+      type: 'notes',
+      visibleWhen: {
+        field: 'details.status'
+      }
+    }
+  ]
+}
+
+assert.strictEqual(
+  validateSchema(conditionalSchema).valid,
+  true
+)
+
+assert.strictEqual(
+  validateSchema(invalidConditionalSchema).valid,
+  false
+)
+
 console.log('validate-schema tests passed.')
