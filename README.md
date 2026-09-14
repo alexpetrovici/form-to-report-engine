@@ -128,16 +128,34 @@ The project is expected to use:
 * Handlebars
 * HTML
 * CSS
-* jsreport
-* Chrome PDF
+* Puppeteer
+* Chromium PDF
 
 Additional technologies may be introduced as the engine evolves.
 
+## Usage
+
+Render a normalized report to HTML, then pass that HTML to the independent PDF renderer:
+
+```js
+const { renderHtml, renderPdf } = require('form-to-report-engine')
+
+const html = renderHtml(report)
+const pdf = await renderPdf(html, {
+  outputPath: 'output/report.pdf'
+})
+```
+
+Generate the HTML examples or the two full PDF examples locally:
+
+```sh
+npm run render:examples
+npm run render:pdf-examples
+```
+
 ## Project Status
 
-Early development.
-
-The current focus is designing the schema format and the core transformation pipeline before implementing PDF rendering.
+Early development. The project includes schema validation, normalization, HTML rendering, and initial Chromium-based PDF rendering.
 
 ## License
 

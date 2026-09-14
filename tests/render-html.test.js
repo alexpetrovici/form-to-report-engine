@@ -18,7 +18,8 @@ const report = {
           label: 'Name',
           type: 'text',
           required: true,
-          value: 'Example User'
+          value: 'Example User',
+          displayValue: 'Example User'
         }
       ]
     },

@@ -18,10 +18,15 @@ const {
   renderHtml
 } = require('./renderers/render-html')
 
+const {
+  renderPdf
+} = require('./renderers/render-pdf')
+
 module.exports = {
   buildReport,
   normalizeReport,
   validateSchema,
   validateSubmission,
-  renderHtml
+  renderHtml,
+  renderPdf
 }

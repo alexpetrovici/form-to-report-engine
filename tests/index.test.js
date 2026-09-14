@@ -27,4 +27,9 @@ assert.strictEqual(
   'function'
 )
 
+assert.strictEqual(
+  typeof engine.renderPdf,
+  'function'
+)
+
 console.log('public API tests passed.')
