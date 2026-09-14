@@ -135,16 +135,27 @@ Additional technologies may be introduced as the engine evolves.
 
 ## Usage
 
-Render a normalized report to HTML, then pass that HTML to the independent PDF renderer:
+Build and render a report through the package API:
 
 ```js
-const { renderHtml, renderPdf } = require('form-to-report-engine')
+const { renderReport } = require('form-to-report-engine')
 
-const html = renderHtml(report)
-const pdf = await renderPdf(html, {
-  outputPath: 'output/report.pdf'
-})
+async function main() {
+  const html = await renderReport(schema, submission, brand, {
+    format: 'html'
+  })
+
+  const pdf = await renderReport(schema, submission, brand, {
+    format: 'pdf',
+    outputPath: 'output/report.pdf'
+  })
+}
+
+main().catch(console.error)
 ```
+
+The lower-level `buildReport`, `normalizeReport`, `renderHtml`, and `renderPdf`
+functions remain available when individual pipeline stages are needed.
 
 Generate the HTML examples or the two full PDF examples locally:
 

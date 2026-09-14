@@ -7,6 +7,7 @@
     "test:normalizer": "node tests/normalize-report.test.js",
     "test:renderer": "node tests/render-html.test.js",
     "test:pdf": "node tests/render-pdf.test.js",
+    "test:report": "node tests/render-report.test.js",
     "render:examples": "node scripts/test-renderer.js",
     "render:pdf-examples": "node scripts/render-pdf-examples.js",
     "debug:normalizer": "node scripts/test-normalizer.js",
@@ -18,7 +19,7 @@
     "test:format": "node tests/format-value.test.js",
     "test:display": "node tests/get-display-value.test.js",
     "test:tables": "node tests/table-formatting.test.js",
-    "test": "npm run test:schema && npm run test:submission && npm run test:normalizer && npm run test:build && npm run test:renderer && npm run test:pdf && npm run test:api && npm run test:conditions && npm run test:format && npm run test:display && npm run test:tables"
+    "test": "npm run test:schema && npm run test:submission && npm run test:normalizer && npm run test:build && npm run test:renderer && npm run test:pdf && npm run test:report && npm run test:api && npm run test:conditions && npm run test:format && npm run test:display && npm run test:tables"
   },
   "keywords": [
     "reporting",

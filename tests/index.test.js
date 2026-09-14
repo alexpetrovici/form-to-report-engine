@@ -32,4 +32,9 @@ assert.strictEqual(
   'function'
 )
 
+assert.strictEqual(
+  typeof engine.renderReport,
+  'function'
+)
+
 console.log('public API tests passed.')

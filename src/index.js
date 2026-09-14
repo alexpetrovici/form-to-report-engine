@@ -22,11 +22,16 @@ const {
   renderPdf
 } = require('./renderers/render-pdf')
 
+const {
+  renderReport
+} = require('./renderers/render-report')
+
 module.exports = {
   buildReport,
   normalizeReport,
   validateSchema,
   validateSubmission,
   renderHtml,
-  renderPdf
+  renderPdf,
+  renderReport
 }
