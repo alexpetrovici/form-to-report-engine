@@ -47,7 +47,8 @@ const sectionTemplates = {
   repeatable: loadTemplate('sections/repeatable.hbs'),
   table: loadTemplate('sections/table.hbs'),
   notes: loadTemplate('sections/notes.hbs'),
-  signature: loadTemplate('sections/signature.hbs')
+  signature: loadTemplate('sections/signature.hbs'),
+  images: loadTemplate('sections/images.hbs')
 }
 
 /**

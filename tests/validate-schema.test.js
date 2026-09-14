@@ -72,6 +72,18 @@ const invalidConditionalSchema = {
   ]
 }
 
+const imagesSchema = {
+  id: 'images-example',
+  title: 'Images Example',
+  sections: [
+    {
+      id: 'photos',
+      title: 'Photos',
+      type: 'images'
+    }
+  ]
+}
+
 assert.strictEqual(
   validateSchema(conditionalSchema).valid,
   true
@@ -80,6 +92,11 @@ assert.strictEqual(
 assert.strictEqual(
   validateSchema(invalidConditionalSchema).valid,
   false
+)
+
+assert.strictEqual(
+  validateSchema(imagesSchema).valid,
+  true
 )
 
 console.log('validate-schema tests passed.')

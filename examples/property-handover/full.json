@@ -43,6 +43,17 @@
 
   "notes": "All keys were handed over during the inspection.",
 
+  "photos": [
+    {
+      "src": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20800%20450%22%3E%3Crect%20width=%22800%22%20height=%22450%22%20fill=%22%23dbeafe%22/%3E%3Ctext%20x=%22400%22%20y=%22235%22%20text-anchor=%22middle%22%20font-family=%22Arial%22%20font-size=%2242%22%20fill=%22%23334155%22%3EFront%20entrance%3C/text%3E%3C/svg%3E",
+      "caption": "Front entrance"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20800%20450%22%3E%3Crect%20width=%22800%22%20height=%22450%22%20fill=%22%23dcfce7%22/%3E%3Ctext%20x=%22400%22%20y=%22235%22%20text-anchor=%22middle%22%20font-family=%22Arial%22%20font-size=%2242%22%20fill=%22%23334155%22%3ELiving%20room%3C/text%3E%3C/svg%3E",
+      "caption": "Living room"
+    }
+  ],
+
   "signatures": {
     "tenant": {
       "name": "Anna Example"

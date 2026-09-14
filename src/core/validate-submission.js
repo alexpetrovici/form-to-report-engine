@@ -44,6 +44,10 @@ function validateSectionSubmission(section, value, errors) {
       validateSignature(section, value, errors)
       break
 
+    case 'images':
+      validateImages(section, value, errors)
+      break
+
     default:
       break
   }
@@ -140,6 +144,32 @@ function validateSignature(section, value, errors) {
   if (!value || typeof value !== 'object' || Array.isArray(value)) {
     errors.push(`Section "${section.id}" must be an object.`)
   }
+}
+
+function validateImages(section, value, errors) {
+  if (value === undefined) {
+    return
+  }
+
+  if (!Array.isArray(value)) {
+    errors.push(`Section "${section.id}" must be an array.`)
+    return
+  }
+
+  value.forEach((image, index) => {
+    if (!image || typeof image !== 'object' || Array.isArray(image)) {
+      errors.push(
+        `Section "${section.id}" image ${index} must be an object.`
+      )
+      return
+    }
+
+    if (typeof image.src !== 'string' || image.src.trim() === '') {
+      errors.push(
+        `Image "${section.id}[${index}].src" must be a non-empty string.`
+      )
+    }
+  })
 }
 
 function hasValue(value) {

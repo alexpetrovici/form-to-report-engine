@@ -29,6 +29,18 @@ const report = {
       type: 'notes',
       visible: false,
       value: 'This should not appear'
+    },
+    {
+      id: 'photos',
+      title: 'Photos',
+      type: 'images',
+      visible: true,
+      images: [
+        {
+          src: 'data:image/png;base64,AAAA',
+          caption: 'Front entrance'
+        }
+      ]
     }
   ]
 }
@@ -53,6 +65,16 @@ assert(
 assert(
   !html.includes('This should not appear'),
   'Hidden section content should not be rendered'
+)
+
+assert(
+  html.includes('src="data:image/png;base64,AAAA"'),
+  'Image source should be rendered'
+)
+
+assert(
+  html.includes('<figcaption>Front entrance</figcaption>'),
+  'Image caption should be rendered'
 )
 
 console.log('render-html tests passed.')

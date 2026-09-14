@@ -26,6 +26,11 @@ const schema = {
       id: 'notes',
       title: 'Notes',
       type: 'notes'
+    },
+    {
+      id: 'photos',
+      title: 'Photos',
+      type: 'images'
     }
   ]
 }
@@ -34,14 +39,23 @@ const submission = {
   details: {
     name: 'Example User'
   },
-  notes: 'Example note'
+  notes: 'Example note',
+  photos: [
+    {
+      src: ' data:image/png;base64,AAAA ',
+      caption: ' Example photo '
+    },
+    {
+      src: ' https://example.test/photo.jpg '
+    }
+  ]
 }
 
 const report = normalizeReport(schema, submission)
 
 assert.strictEqual(report.id, 'example-report')
 assert.strictEqual(report.title, 'Example Report')
-assert.strictEqual(report.sections.length, 2)
+assert.strictEqual(report.sections.length, 3)
 
 assert.strictEqual(report.sections[0].visible, true)
 assert.strictEqual(
@@ -53,6 +67,21 @@ assert.strictEqual(report.sections[1].visible, true)
 assert.strictEqual(
   report.sections[1].value,
   'Example note'
+)
+
+assert.strictEqual(report.sections[2].visible, true)
+assert.deepStrictEqual(
+  report.sections[2].images,
+  [
+    {
+      src: 'data:image/png;base64,AAAA',
+      caption: 'Example photo'
+    },
+    {
+      src: 'https://example.test/photo.jpg',
+      caption: ''
+    }
+  ]
 )
 
 assert.throws(

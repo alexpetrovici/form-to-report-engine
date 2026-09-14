@@ -91,6 +91,12 @@ function normalizeSection(section = {}, submission = {}) {
         signers: normalizeSigners(section.signers, sectionData)
       }
 
+    case 'images':
+      return {
+        ...normalizedSection,
+        images: normalizeImages(sectionData)
+      }
+
     default:
       return {
         ...normalizedSection,
@@ -215,6 +221,27 @@ function normalizeSigners(signers = [], sectionData = {}) {
 }
 
 /**
+ * Normalizes image sources and optional captions.
+ */
+function normalizeImages(sectionData = []) {
+  if (!Array.isArray(sectionData)) {
+    return []
+  }
+
+  return sectionData
+    .filter((image) => (
+      image &&
+      typeof image === 'object' &&
+      !Array.isArray(image) &&
+      normalizeText(image.src) !== ''
+    ))
+    .map((image) => ({
+      src: normalizeText(image.src),
+      caption: normalizeText(image.caption)
+    }))
+}
+
+/**
  * Determines whether a section contains data worth rendering.
  */
 function hasMeaningfulData(type, value) {
@@ -231,6 +258,9 @@ function hasMeaningfulData(type, value) {
 
     case 'signature':
       return hasObjectValues(value)
+
+    case 'images':
+      return normalizeImages(value).length > 0
 
     default:
       return value !== undefined && value !== null
@@ -302,6 +332,7 @@ module.exports = {
   normalizeColumns,
   normalizeTableRows,
   normalizeSigners,
+  normalizeImages,
   normalizeBrand,
   hasMeaningfulData
 }

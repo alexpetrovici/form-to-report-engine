@@ -60,6 +60,20 @@ See `examples/property-handover/` and `examples/field-service/` for complete inp
 - `table`: An array of rows rendered against defined columns.
 - `notes`: A free-text section.
 - `signature`: A group of configured signers and their signing status.
+- `images`: An array of renderable image sources with optional captions.
+
+An image submission uses `src` exactly as provided, so data URLs, local file URLs, and remote URLs are supported:
+
+```json
+{
+  "photos": [
+    {
+      "src": "data:image/jpeg;base64,...",
+      "caption": "Front entrance"
+    }
+  ]
+}
+```
 
 ## Conditional Sections
 

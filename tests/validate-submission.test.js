@@ -33,6 +33,11 @@ const schema = {
           required: true
         }
       ]
+    },
+    {
+      id: 'photos',
+      title: 'Photos',
+      type: 'images'
     }
   ]
 }
@@ -45,6 +50,18 @@ const validSubmission = {
     {
       description: 'Example item'
     }
+  ],
+  photos: [
+    {
+      src: 'data:image/png;base64,AAAA',
+      caption: 'Example photo'
+    },
+    {
+      src: 'file:///example/photo.jpg'
+    },
+    {
+      src: 'https://example.test/photo.jpg'
+    }
   ]
 }
 
@@ -54,6 +71,12 @@ const invalidSubmission = {
   },
   items: [
     {}
+  ],
+  photos: [
+    null,
+    {
+      src: '   '
+    }
   ]
 }
 
@@ -74,6 +97,34 @@ assert(
 assert(
   invalidResult.errors.includes(
     'Required field "items[0].description" is missing.'
+  )
+)
+
+assert(
+  invalidResult.errors.includes(
+    'Section "photos" image 0 must be an object.'
+  )
+)
+
+assert(
+  invalidResult.errors.includes(
+    'Image "photos[1].src" must be a non-empty string.'
+  )
+)
+
+const nonArrayImagesResult = validateSubmission(
+  schema,
+  {
+    ...validSubmission,
+    photos: {
+      src: 'data:image/png;base64,AAAA'
+    }
+  }
+)
+
+assert(
+  nonArrayImagesResult.errors.includes(
+    'Section "photos" must be an array.'
   )
 )
 

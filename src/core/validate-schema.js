@@ -3,7 +3,8 @@ const SUPPORTED_SECTION_TYPES = new Set([
   'repeatable',
   'table',
   'notes',
-  'signature'
+  'signature',
+  'images'
 ])
 
 function validateSchema(schema = {}) {
