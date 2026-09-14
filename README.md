@@ -1,172 +1,137 @@
 # form-to-report-engine
 
-Open-source schema-driven engine for turning structured form data into modular, professional HTML and PDF reports.
+Open-source, schema-driven Node.js engine for turning structured form data into branded HTML and PDF reports.
 
 ## Overview
 
-`form-to-report-engine` is a JavaScript-based reporting engine designed to transform structured form submissions into reusable, configurable reports.
+`form-to-report-engine` keeps report definitions, submitted data, branding, normalization, and rendering separate. A report passes through the existing validation and normalization pipeline before Handlebars produces HTML; Puppeteer can then convert that same HTML into a PDF.
 
-The project focuses on separating:
+The repository includes property handover and field service examples.
 
-* form data
-* report schemas
-* normalization logic
-* presentation components
-* branding
-* PDF rendering
+## Prerequisites
 
-This makes it possible to build different report types without hardcoding an entire document for every use case.
+- Node.js 22.12 or newer
+- npm
 
-Example applications include:
+## Installation
 
-* property handover reports
-* field service reports
-* inspection reports
-* maintenance reports
-* damage documentation
-* installation reports
-* vehicle condition reports
-* structured checklists
-
-## Core Concept
-
-```text
-Report Schema
-     +
-Form Submission
-     +
-Brand Configuration
-        ↓
-Data Normalization
-        ↓
-Normalized Report Model
-        ↓
-Reusable Report Components
-        ↓
-HTML / Handlebars
-        ↓
-Chrome PDF
-        ↓
-Professional Report
+```sh
+git clone <repository-url>
+cd form-to-report-engine
+npm install
 ```
 
-## Goals
+Installing dependencies also downloads the Chromium build used by Puppeteer.
 
-The project aims to provide:
+## Run the Project
 
-* schema-driven report definitions
-* reusable report components
-* conditional sections
-* repeatable data groups
-* dynamic tables and rows
-* configurable branding
-* HTML report rendering
-* PDF generation
-* multi-page document support
-* reusable headers and footers
-* clean separation between data and presentation
+Run the full test suite:
 
-## Planned Example Reports
-
-The engine will initially be demonstrated with two independent example workflows.
-
-### Property Handover Report
-
-A structured handover and inspection report containing:
-
-* property details
-* room inspections
-* condition ratings
-* defects
-* meter readings
-* keys
-* notes
-* photos
-* signatures
-
-### Field Service Report
-
-A structured service report containing:
-
-* customer information
-* job details
-* work performed
-* measurements
-* materials
-* identified issues
-* recommendations
-* photos
-* customer and technician signatures
-
-## Planned Architecture
-
-```text
-form-to-report-engine/
-├── docs/
-│   ├── architecture.md
-│   └── schema.md
-├── examples/
-│   ├── property-handover/
-│   └── field-service/
-├── src/
-│   ├── core/
-│   ├── renderers/
-│   ├── components/
-│   └── shared/
-├── screenshots/
-├── README.md
-├── LICENSE
-└── .gitignore
+```sh
+npm test
 ```
 
-## Technology Direction
+Generate HTML for the `empty`, `basic`, and `full` submissions of both example reports:
 
-The project is expected to use:
+```sh
+npm run render:examples
+```
 
-* JavaScript
-* Node.js
-* Handlebars
-* HTML
-* CSS
-* Puppeteer
-* Chromium PDF
+Generate PDFs for the `full` submission of both example reports:
 
-Additional technologies may be introduced as the engine evolves.
+```sh
+npm run render:pdf-examples
+```
 
-## Usage
+Generated files are written to the ignored `output/` directory.
 
-Build and render a report through the package API:
+## Core Inputs
+
+- **Schema:** Defines the report title, sections, fields, labels, validation requirements, formatting, and visibility rules.
+- **Submission:** Contains the form values for one report instance. Its keys correspond to section and field IDs in the schema.
+- **Brand:** Supplies optional presentation values such as company name, tagline, contact details, and primary color.
+
+See `examples/property-handover/` and `examples/field-service/` for complete input sets.
+
+## Supported Section Types
+
+- `fields`: A labeled group of individual values.
+- `repeatable`: An array of similarly structured items rendered as cards.
+- `table`: An array of rows rendered against defined columns.
+- `notes`: A free-text section.
+- `signature`: A group of configured signers and their signing status.
+
+## Conditional Sections
+
+A section can use `visibleWhen` to compare a submission value by its dot-separated field path:
+
+```json
+{
+  "id": "notes",
+  "title": "Additional Notes",
+  "type": "notes",
+  "visibleWhen": {
+    "field": "job.status",
+    "equals": "Completed"
+  }
+}
+```
+
+Use either `equals` or `notEquals`. A conditional section renders only when its condition matches and the section contains meaningful data.
+
+## Public API Usage
+
+This CommonJS example can be run from the repository root and uses the package entry point:
 
 ```js
-const { renderReport } = require('form-to-report-engine')
+const fs = require('fs')
+
+const {
+  renderReport
+} = require('.')
+
+const schema = require('./examples/property-handover/schema.json')
+const submission = require('./examples/property-handover/full.json')
+const brand = require('./examples/property-handover/brand.json')
 
 async function main() {
   const html = await renderReport(schema, submission, brand, {
     format: 'html'
   })
 
-  const pdf = await renderReport(schema, submission, brand, {
+  fs.mkdirSync('output', { recursive: true })
+  fs.writeFileSync('output/property-handover-full.html', html)
+
+  await renderReport(schema, submission, brand, {
     format: 'pdf',
-    outputPath: 'output/report.pdf'
+    outputPath: 'output/property-handover-full.pdf'
   })
 }
 
 main().catch(console.error)
 ```
 
-The lower-level `buildReport`, `normalizeReport`, `renderHtml`, and `renderPdf`
-functions remain available when individual pipeline stages are needed.
+PDF mode accepts the same options as `renderPdf`, including `outputPath`, `launchOptions`, `contentOptions`, `pdfOptions`, and a reusable Puppeteer `browser`.
 
-Generate the HTML examples or the two full PDF examples locally:
+## Lower-Level API
 
-```sh
-npm run render:examples
-npm run render:pdf-examples
+The package also exports `buildReport`, `normalizeReport`, `validateSchema`, `validateSubmission`, `renderHtml`, and `renderPdf` for applications that need individual pipeline stages.
+
+## Project Structure
+
+```text
+src/core/          Validation, conditions, formatting, and normalization
+src/renderers/     HTML, PDF, and convenience renderers
+src/templates/     Handlebars templates and report CSS
+examples/          Independent schemas, submissions, and branding
+scripts/           HTML and PDF example generators
+tests/             Focused test suite
+output/            Generated reports (ignored by Git)
 ```
 
 ## Project Status
 
-Early development. The project includes schema validation, normalization, HTML rendering, and initial Chromium-based PDF rendering.
+Early development. Schema validation, submission validation, normalization, HTML rendering, PDF rendering, and the public convenience API are implemented.
 
 ## License
 
