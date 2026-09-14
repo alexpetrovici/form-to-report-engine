@@ -25,12 +25,14 @@ const schema = {
     {
       id: 'notes',
       title: 'Notes',
-      type: 'notes'
+      type: 'notes',
+      keepTogether: true
     },
     {
       id: 'photos',
       title: 'Photos',
-      type: 'images'
+      type: 'images',
+      pageBreakBefore: true
     }
   ]
 }
@@ -58,18 +60,22 @@ assert.strictEqual(report.title, 'Example Report')
 assert.strictEqual(report.sections.length, 3)
 
 assert.strictEqual(report.sections[0].visible, true)
+assert.strictEqual(report.sections[0].pageBreakBefore, false)
+assert.strictEqual(report.sections[0].keepTogether, false)
 assert.strictEqual(
   report.sections[0].fields[0].value,
   'Example User'
 )
 
 assert.strictEqual(report.sections[1].visible, true)
+assert.strictEqual(report.sections[1].keepTogether, true)
 assert.strictEqual(
   report.sections[1].value,
   'Example note'
 )
 
 assert.strictEqual(report.sections[2].visible, true)
+assert.strictEqual(report.sections[2].pageBreakBefore, true)
 assert.deepStrictEqual(
   report.sections[2].images,
   [

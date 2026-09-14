@@ -65,7 +65,26 @@ function renderSection(section = {}) {
     return ''
   }
 
-  return template(section)
+  const html = template(section)
+  const paginationClasses = []
+
+  if (section.pageBreakBefore) {
+    paginationClasses.push('page-break-before')
+  }
+
+  if (section.keepTogether) {
+    paginationClasses.push('keep-together')
+  }
+
+  if (paginationClasses.length === 0) {
+    return html
+  }
+
+  return [
+    `<div class="${paginationClasses.join(' ')}">`,
+    html,
+    '</div>'
+  ].join('\n')
 }
 
 /**

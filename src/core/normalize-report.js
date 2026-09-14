@@ -54,6 +54,8 @@ function normalizeSection(section = {}, submission = {}) {
     id: section.id || '',
     title: section.title || '',
     type: section.type || 'unknown',
+    pageBreakBefore: section.pageBreakBefore === true,
+    keepTogether: section.keepTogether === true,
     visible:
         evaluateCondition(section.visibleWhen, submission) &&
         hasMeaningfulData(section.type, sectionData)

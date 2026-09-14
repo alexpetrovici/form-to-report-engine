@@ -93,6 +93,23 @@ A section can use `visibleWhen` to compare a submission value by its dot-separat
 
 Use either `equals` or `notEquals`. A conditional section renders only when its condition matches and the section contains meaningful data.
 
+## Section Pagination
+
+Sections can optionally request print and PDF pagination behavior:
+
+```json
+{
+  "id": "photos",
+  "title": "Photos",
+  "type": "images",
+  "pageBreakBefore": true,
+  "keepTogether": true
+}
+```
+
+- `pageBreakBefore` starts the section on a new page.
+- `keepTogether` asks the renderer to avoid splitting the section when it fits on one page. Oversized sections can still span pages.
+
 ## Public API Usage
 
 This CommonJS example can be run from the repository root and uses the package entry point:

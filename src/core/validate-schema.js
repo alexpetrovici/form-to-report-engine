@@ -47,6 +47,18 @@ function validateSection(section = {}, index, errors) {
     errors.push(`${location} must define a string "title".`)
   }
 
+  validateOptionalBoolean(
+    section.pageBreakBefore,
+    `${location}.pageBreakBefore`,
+    errors
+  )
+
+  validateOptionalBoolean(
+    section.keepTogether,
+    `${location}.keepTogether`,
+    errors
+  )
+
   validateVisibleWhen(
   section.visibleWhen,
   location,
@@ -88,6 +100,12 @@ function validateSection(section = {}, index, errors) {
 
     default:
       break
+  }
+}
+
+function validateOptionalBoolean(value, location, errors) {
+  if (value !== undefined && typeof value !== 'boolean') {
+    errors.push(`${location} must be a boolean.`)
   }
 }
 

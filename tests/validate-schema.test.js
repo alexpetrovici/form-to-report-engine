@@ -79,7 +79,23 @@ const imagesSchema = {
     {
       id: 'photos',
       title: 'Photos',
-      type: 'images'
+      type: 'images',
+      pageBreakBefore: true,
+      keepTogether: false
+    }
+  ]
+}
+
+const invalidPaginationSchema = {
+  id: 'invalid-pagination',
+  title: 'Invalid Pagination',
+  sections: [
+    {
+      id: 'notes',
+      title: 'Notes',
+      type: 'notes',
+      pageBreakBefore: 'yes',
+      keepTogether: 1
     }
   ]
 }
@@ -97,6 +113,20 @@ assert.strictEqual(
 assert.strictEqual(
   validateSchema(imagesSchema).valid,
   true
+)
+
+const invalidPaginationResult = validateSchema(invalidPaginationSchema)
+
+assert(
+  invalidPaginationResult.errors.includes(
+    'sections[0].pageBreakBefore must be a boolean.'
+  )
+)
+
+assert(
+  invalidPaginationResult.errors.includes(
+    'sections[0].keepTogether must be a boolean.'
+  )
 )
 
 console.log('validate-schema tests passed.')

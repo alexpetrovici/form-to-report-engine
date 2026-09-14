@@ -12,6 +12,8 @@ const report = {
       title: 'Details',
       type: 'fields',
       visible: true,
+      pageBreakBefore: true,
+      keepTogether: true,
       fields: [
         {
           id: 'name',
@@ -55,6 +57,11 @@ assert(
 assert(
   html.includes('Example User'),
   'Field value should be rendered'
+)
+
+assert(
+  html.includes('class="page-break-before keep-together"'),
+  'Section pagination classes should be rendered'
 )
 
 assert(

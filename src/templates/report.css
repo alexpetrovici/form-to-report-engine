@@ -131,6 +131,16 @@ th {
 }
 
 @media print {
+  .page-break-before {
+    break-before: page;
+    page-break-before: always;
+  }
+
+  .keep-together {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
   h1,
   h2,
   h3 {
